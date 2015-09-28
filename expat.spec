@@ -4,7 +4,7 @@
 #
 Name     : expat
 Version  : 2.1.0
-Release  : 14
+Release  : 15
 URL      : http://downloads.sourceforge.net/expat/expat-2.1.0.tar.gz
 Source0  : http://downloads.sourceforge.net/expat/expat-2.1.0.tar.gz
 Summary  : expat XML parser
