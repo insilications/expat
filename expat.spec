@@ -4,7 +4,7 @@
 #
 Name     : expat
 Version  : 2.1.1
-Release  : 16
+Release  : 17
 URL      : http://downloads.sourceforge.net/expat/expat-2.1.1.tar.bz2
 Source0  : http://downloads.sourceforge.net/expat/expat-2.1.1.tar.bz2
 Summary  : expat XML parser
@@ -63,6 +63,13 @@ lib components for the expat package.
 %setup -q -n expat-2.1.1
 
 %build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export FCFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export FFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
