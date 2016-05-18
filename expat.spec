@@ -4,7 +4,7 @@
 #
 Name     : expat
 Version  : 2.1.1
-Release  : 19
+Release  : 20
 URL      : http://downloads.sourceforge.net/expat/expat-2.1.1.tar.bz2
 Source0  : http://downloads.sourceforge.net/expat/expat-2.1.1.tar.bz2
 Summary  : expat XML parser
@@ -14,6 +14,8 @@ Requires: expat-bin
 Requires: expat-lib
 Requires: expat-doc
 Patch1: cve-2013-0340.nopatch
+Patch2: cve-2015-1283.patch
+Patch3: cve-2016-0718.patch
 
 %description
 Expat, Release 2.1.1
@@ -61,15 +63,17 @@ lib components for the expat package.
 
 %prep
 %setup -q -n expat-2.1.1
+%patch2 -p2
+%patch3 -p2
 
 %build
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
-export FCFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
-export FFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
-export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export CFLAGS="$CFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
