@@ -4,7 +4,7 @@
 #
 Name     : expat
 Version  : 2.2.0
-Release  : 21
+Release  : 22
 URL      : http://downloads.sourceforge.net/expat/expat-2.2.0.tar.bz2
 Source0  : http://downloads.sourceforge.net/expat/expat-2.2.0.tar.bz2
 Summary  : expat XML parser
@@ -13,6 +13,7 @@ License  : MIT
 Requires: expat-bin
 Requires: expat-lib
 Requires: expat-doc
+Patch1: cve-2016-4472.nopatch
 
 %description
 Expat, Release 2.2.0
@@ -66,10 +67,10 @@ export LANG=C
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -flto -fno-semantic-interposition -O3 -falign-functions=32 "
-export FCFLAGS="$CFLAGS -flto -fno-semantic-interposition -O3 -falign-functions=32 "
-export FFLAGS="$CFLAGS -flto -fno-semantic-interposition -O3 -falign-functions=32 "
-export CXXFLAGS="$CXXFLAGS -flto -fno-semantic-interposition -O3 -falign-functions=32 "
+export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
+export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
+export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
+export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
