@@ -4,7 +4,7 @@
 #
 Name     : expat
 Version  : 2.2.0
-Release  : 22
+Release  : 23
 URL      : http://downloads.sourceforge.net/expat/expat-2.2.0.tar.bz2
 Source0  : http://downloads.sourceforge.net/expat/expat-2.2.0.tar.bz2
 Summary  : expat XML parser
@@ -64,13 +64,10 @@ lib components for the expat package.
 
 %build
 export LANG=C
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
-export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition -falign-functions=32 "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -95,8 +92,8 @@ rm -rf %{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/*.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libexpat.so
+/usr/lib64/pkgconfig/expat.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -104,4 +101,5 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libexpat.so.1
+/usr/lib64/libexpat.so.1.6.2
