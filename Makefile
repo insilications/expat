@@ -1,5 +1,5 @@
 PKG_NAME := expat
-URL := http://downloads.sourceforge.net/expat/expat-2.2.0.tar.bz2
+URL := https://sourceforge.net/projects/expat/files/expat/2.2.1/expat-2.2.1.tar.bz2
 
 
 include ../common/Makefile.common
