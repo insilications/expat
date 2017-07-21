@@ -4,7 +4,7 @@
 #
 Name     : expat
 Version  : 2.2.2
-Release  : 28
+Release  : 29
 URL      : https://sourceforge.net/projects/expat/files/expat/2.2.2/expat-2.2.2.tar.bz2
 Source0  : https://sourceforge.net/projects/expat/files/expat/2.2.2/expat-2.2.2.tar.bz2
 Summary  : expat XML parser
@@ -19,6 +19,7 @@ BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 Patch1: cve-2016-4472.nopatch
+Patch2: entropy.patch
 
 %description
 Expat, Release 2.2.2
@@ -85,6 +86,7 @@ lib32 components for the expat package.
 
 %prep
 %setup -q -n expat-2.2.2
+%patch2 -p1
 pushd ..
 cp -a expat-2.2.2 build32
 popd
@@ -94,7 +96,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1500073461
+export SOURCE_DATE_EPOCH=1500645960
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -121,7 +123,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1500073461
+export SOURCE_DATE_EPOCH=1500645960
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
