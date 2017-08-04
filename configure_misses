@@ -1,4 +1,6 @@
 Configure miss: arc4random_buf (BSD or libbsd)
+Configure miss: arc4random (BSD, macOS or libbsd)
 Configure miss: i686-generic-linux-gnu-strip
 Configure miss: i686-generic-linux-gnu-mt
 Configure miss: arc4random_buf (BSD or libbsd)
+Configure miss: arc4random (BSD, macOS or libbsd)

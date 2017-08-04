@@ -1,2 +1,2 @@
 cve-2016-4472.nopatch
-entropy.patch
+#entropy.patch
