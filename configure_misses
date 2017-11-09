@@ -1,6 +1,12 @@
 Configure miss: arc4random_buf (BSD or libbsd)
 Configure miss: arc4random (BSD, macOS or libbsd)
+Configure miss: docbook2x-man
+Configure miss: docbook2man
+Configure miss: docbook-to-man
 Configure miss: i686-generic-linux-gnu-strip
 Configure miss: i686-generic-linux-gnu-mt
 Configure miss: arc4random_buf (BSD or libbsd)
 Configure miss: arc4random (BSD, macOS or libbsd)
+Configure miss: docbook2x-man
+Configure miss: docbook2man
+Configure miss: docbook-to-man
