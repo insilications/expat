@@ -4,7 +4,7 @@
 #
 Name     : expat
 Version  : 2.2.5
-Release  : 32
+Release  : 33
 URL      : https://github.com/libexpat/libexpat/releases/download/R_2_2_5/expat-2.2.5.tar.bz2
 Source0  : https://github.com/libexpat/libexpat/releases/download/R_2_2_5/expat-2.2.5.tar.bz2
 Summary  : expat XML parser
