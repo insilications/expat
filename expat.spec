@@ -6,7 +6,7 @@
 #
 Name     : expat
 Version  : 2.2.6
-Release  : 37
+Release  : 38
 URL      : https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
 Source0  : https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
 Source99 : https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2.asc
@@ -112,13 +112,16 @@ man components for the expat package.
 pushd ..
 cp -a expat-2.2.6 build32
 popd
+pushd ..
+cp -a expat-2.2.6 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557008566
+export SOURCE_DATE_EPOCH=1557008845
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -138,6 +141,14 @@ export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32"
 %configure --disable-static DOCBOOK_TO_MAN="xmlto man --skip-validation"   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=haswell"
+export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
+export LDFLAGS="$LDFLAGS -m64 -march=haswell"
+%configure --disable-static DOCBOOK_TO_MAN="xmlto man --skip-validation"
+make  %{?_smp_mflags}
+popd
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
@@ -146,9 +157,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+cd ../buildavx2;
+make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1557008566
+export SOURCE_DATE_EPOCH=1557008845
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/expat
 cp COPYING %{buildroot}/usr/share/package-licenses/expat/COPYING
@@ -161,6 +174,9 @@ for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
 popd
+pushd ../buildavx2/
+%make_install_avx2
+popd
 %make_install
 
 %files
@@ -168,11 +184,13 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
+/usr/bin/haswell/xmlwf
 /usr/bin/xmlwf
 
 %files dev
 %defattr(-,root,root,-)
 /usr/include/*.h
+/usr/lib64/haswell/libexpat.so
 /usr/lib64/libexpat.so
 /usr/lib64/pkgconfig/expat.pc
 
@@ -188,6 +206,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/haswell/libexpat.so.1
+/usr/lib64/haswell/libexpat.so.1.6.8
 /usr/lib64/libexpat.so.1
 /usr/lib64/libexpat.so.1.6.8
 
