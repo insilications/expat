@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xB00BC66A401A1600 (sping@gentoo.org)
 #
 Name     : expat
-Version  : 2.2.6
-Release  : 38
-URL      : https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
-Source0  : https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
-Source99 : https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2.asc
+Version  : 2.2.7
+Release  : 39
+URL      : https://sourceforge.net/projects/expat/files/expat/2.2.7/expat-2.2.7.tar.xz
+Source0  : https://sourceforge.net/projects/expat/files/expat/2.2.7/expat-2.2.7.tar.xz
+Source99 : https://sourceforge.net/projects/expat/files/expat/2.2.7/expat-2.2.7.tar.xz.asc
 Summary  : expat XML parser
 Group    : Development/Tools
 License  : MIT
@@ -18,19 +18,18 @@ Requires: expat-lib = %{version}-%{release}
 Requires: expat-license = %{version}-%{release}
 Requires: expat-man = %{version}-%{release}
 BuildRequires : buildreq-configure
-BuildRequires : docbook-utils
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
-BuildRequires : util-linux
 BuildRequires : xmlto
 Patch1: cve-2016-4472.nopatch
 
 %description
 [![Travis CI Build Status](https://travis-ci.org/libexpat/libexpat.svg?branch=master)](https://travis-ci.org/libexpat/libexpat)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/libexpat/libexpat?svg=true)](https://ci.appveyor.com/project/libexpat/libexpat)
+[![Packaging status](https://repology.org/badge/tiny-repos/expat.svg)](https://repology.org/metapackage/expat/versions)
 
 %package bin
 Summary: bin components for the expat package.
@@ -47,6 +46,7 @@ Group: Development
 Requires: expat-lib = %{version}-%{release}
 Requires: expat-bin = %{version}-%{release}
 Provides: expat-devel = %{version}-%{release}
+Requires: expat = %{version}-%{release}
 Requires: expat = %{version}-%{release}
 
 %description dev
@@ -108,12 +108,12 @@ man components for the expat package.
 
 
 %prep
-%setup -q -n expat-2.2.6
+%setup -q -n expat-2.2.7
 pushd ..
-cp -a expat-2.2.6 build32
+cp -a expat-2.2.7 build32
 popd
 pushd ..
-cp -a expat-2.2.6 buildavx2
+cp -a expat-2.2.7 buildavx2
 popd
 
 %build
@@ -121,7 +121,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557008845
+export SOURCE_DATE_EPOCH=1560981785
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -161,7 +162,7 @@ cd ../buildavx2;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1557008845
+export SOURCE_DATE_EPOCH=1560981785
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/expat
 cp COPYING %{buildroot}/usr/share/package-licenses/expat/COPYING
@@ -207,14 +208,14 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/haswell/libexpat.so.1
-/usr/lib64/haswell/libexpat.so.1.6.8
+/usr/lib64/haswell/libexpat.so.1.6.9
 /usr/lib64/libexpat.so.1
-/usr/lib64/libexpat.so.1.6.8
+/usr/lib64/libexpat.so.1.6.9
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libexpat.so.1
-/usr/lib32/libexpat.so.1.6.8
+/usr/lib32/libexpat.so.1.6.9
 
 %files license
 %defattr(0644,root,root,0755)

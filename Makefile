@@ -1,5 +1,5 @@
 PKG_NAME := expat
-URL = https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2
+URL = https://sourceforge.net/projects/expat/files/expat/2.2.7/expat-2.2.7.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
