@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x96262ACFFBD3AEC6 (sping@gentoo.org)
 #
 Name     : expat
-Version  : 2.2.8
-Release  : 40
-URL      : https://sourceforge.net/projects/expat/files/expat/2.2.8/expat-2.2.8.tar.xz
-Source0  : https://sourceforge.net/projects/expat/files/expat/2.2.8/expat-2.2.8.tar.xz
-Source1 : https://sourceforge.net/projects/expat/files/expat/2.2.8/expat-2.2.8.tar.xz.asc
+Version  : 2.2.9
+Release  : 41
+URL      : https://sourceforge.net/projects/expat/files/expat/2.2.9/expat-2.2.9.tar.xz
+Source0  : https://sourceforge.net/projects/expat/files/expat/2.2.9/expat-2.2.9.tar.xz
+Source1 : https://sourceforge.net/projects/expat/files/expat/2.2.9/expat-2.2.9.tar.xz.asc
 Summary  : expat XML parser
 Group    : Development/Tools
 License  : MIT
@@ -108,12 +108,12 @@ man components for the expat package.
 
 
 %prep
-%setup -q -n expat-2.2.8
+%setup -q -n expat-2.2.9
 pushd ..
-cp -a expat-2.2.8 build32
+cp -a expat-2.2.9 build32
 popd
 pushd ..
-cp -a expat-2.2.8 buildavx2
+cp -a expat-2.2.9 buildavx2
 popd
 
 %build
@@ -121,7 +121,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568505552
+export SOURCE_DATE_EPOCH=1569454555
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -163,7 +163,7 @@ cd ../buildavx2;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1568505552
+export SOURCE_DATE_EPOCH=1569454555
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/expat
 cp COPYING %{buildroot}/usr/share/package-licenses/expat/COPYING
@@ -211,14 +211,14 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/haswell/libexpat.so.1
-/usr/lib64/haswell/libexpat.so.1.6.10
+/usr/lib64/haswell/libexpat.so.1.6.11
 /usr/lib64/libexpat.so.1
-/usr/lib64/libexpat.so.1.6.10
+/usr/lib64/libexpat.so.1.6.11
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libexpat.so.1
-/usr/lib32/libexpat.so.1.6.10
+/usr/lib32/libexpat.so.1.6.11
 
 %files license
 %defattr(0644,root,root,0755)
