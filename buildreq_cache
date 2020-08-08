@@ -1,4 +1,6 @@
 2.2.9
 docbook-utils
+docbook-xml
+libxslt-bin
 util-linux
 xmlto
